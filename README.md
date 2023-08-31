@@ -1,6 +1,6 @@
 ![frame_logo](_static/voverlay_web_logo.png)
 
-# VOverlay interface C++ class
+# **VOverlay interface C++ class**
 
 **v1.0.0**
 
