@@ -10,7 +10,7 @@
 
 # Overview
 
-**VOverlay** C++ library provides standard interface for overlaying info on video for different implementations. Standard for overlaying info on video used in video processing pipeline interface. Video processing pipeline interface understands only interfaces and user can make custom video overlay class implementation depends on situation. The **VOverlay** interface provides only one method **overlay(...)** to overlay info on video. This method is called by pipelines for each frame of the video. Any implementation may include additional methods depending on the situation. The method depends on the [**Frame**](https://github.com/ConstantRobotics-Ltd/Frame) class, which defines the data structure of the video frame.
+**VOverlay** C++ library provides standard interface for overlaying information on video for different implementations. Standard for overlaying information on video used in video processing pipeline interface. Video processing pipeline interface understands only interfaces and user can make custom video overlay class implementation depends on situation. The **VOverlay** interface provides only one method **overlay(...)** to overlay information on video. This method is called by pipelines for each frame of the video. Any implementation may include additional methods depending on the situation. The method depends on the [**Frame**](https://github.com/ConstantRobotics-Ltd/Frame) class, which defines the data structure of the video frame.
 
 
 
@@ -77,7 +77,7 @@ VOverlay class version: 1.0.0
 
 ## overlay method
 
-**overlay(...)** method overlays custom info on video. Method declaration:
+**overlay(...)** method overlays custom information on video. Method declaration:
 
 ```cpp
 virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
@@ -85,10 +85,10 @@ virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
 
 | Parameter | Description                                                  |
 | --------- | ------------------------------------------------------------ |
-| frame     | Video frame object to overlay info. Each video overlay implementation should support all RAW pixel format declared in [**Frame**](https://github.com/ConstantRobotics-Ltd/Frame) class (RGB24, BGR24, YUYV, UYVY, GRAY, YUV24, NV12, NV21, YU12, YV12). |
-| data      | Pointer to info structure to overlay. User defines data structure format depends on implementation. |
+| frame     | Video frame object to overlay information. Each video overlay implementation should support all RAW pixel format declared in [**Frame**](https://github.com/ConstantRobotics-Ltd/Frame) class (RGB24, BGR24, YUYV, UYVY, GRAY, YUV24, NV12, NV21, YU12, YV12). |
+| data      | Pointer to information structure to overlay. User defines data structure format depends on implementation. |
 
-**Returns:** TRUE if info overlayed or FALSE if not (not supported frame format, invalid frame data etc.).
+**Returns:** TRUE if information overlayed or FALSE if not (not supported frame format, invalid frame data etc.).
 
 
 
@@ -106,7 +106,7 @@ cmake ..
 make
 ```
 
-If you want connect **VOverlay** library to your CMake project as source code you can make follow. For example, if your repository has structure:
+If you want connect **VOverlay** library to your CMake project as source code you can make as follows. For example, if your repository has structure:
 
 ```bash
 CMakeLists.txt
@@ -124,7 +124,7 @@ git submodule add https://github.com/ConstantRobotics-Ltd/VOverlay.git 3rdparty/
 git submodule update --init --recursive
 ```
 
-In you repository folder will be created folder **3rdparty/VOverlay** which contains files of **VOverlay** repository with subrepository **Frame**. New structure of your repository:
+In your repository folder **3rdparty/VOverlay** will be created which contains files of **VOverlay** repository with subrepository **Frame**. New structure of your repository:
 
 ```bash
 CMakeLists.txt
@@ -197,20 +197,3 @@ target_link_libraries(${PROJECT_NAME} VOverlay)
 ```
 
 Done!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
