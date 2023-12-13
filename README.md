@@ -2,7 +2,7 @@
 
 # **VOverlay interface C++ class**
 
-**v1.0.0**
+**v1.1.0**
 
 ------
 
@@ -21,6 +21,7 @@
 | Version | Release date | What's new     |
 | ------- | ------------ | -------------- |
 | 1.0.0   | 31.08.2023   | First version. |
+| 1.1.0   | 13.12.2023   | Virtual destructor added. |
 
 
 
@@ -36,6 +37,10 @@
 class VOverlay
 {
 public:
+    /**
+     * @brief Class destructor.
+     */
+    virtual ~VOverlay();
     /**
      * @brief Get string of current class version.
      * @return String of current class version "Major.Minor.Patch"
@@ -70,7 +75,7 @@ cout << "VOverlay class version: " << VOverlay::getVersion() << endl;
 Console output:
 
 ```bash
-VOverlay class version: 1.0.0
+VOverlay class version: 1.1.0
 ```
 
 
