@@ -15,6 +15,11 @@ class VOverlay
 public:
 
     /**
+     * @brief Class destructor.
+     */
+    virtual ~VOverlay();
+
+    /**
      * @brief Get string of current class version.
      * @return String of current class version "Major.Minor.Patch"
      */
