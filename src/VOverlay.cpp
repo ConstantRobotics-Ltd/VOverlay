@@ -3,6 +3,13 @@
 
 
 
+cr::video::VOverlay::~VOverlay()
+{
+
+}
+
+
+
 std::string cr::video::VOverlay::getVersion()
 {
     return VOVERLAY_VERSION;
