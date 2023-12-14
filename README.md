@@ -21,7 +21,7 @@
 | Version | Release date | What's new     |
 | ------- | ------------ | -------------- |
 | 1.0.0   | 31.08.2023   | First version. |
-| 1.1.0   | 13.12.2023   | Virtual destructor added. |
+| 1.1.0   | 13.12.2023   | Virtual destructor added.<br /> Frame class updated. |
 
 
 
