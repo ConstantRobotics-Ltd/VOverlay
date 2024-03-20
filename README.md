@@ -1,16 +1,29 @@
-![frame_logo](_static/voverlay_web_logo.png)
+![voverlay_web_logo](_static/voverlay_web_logo.png)
+
+
 
 # **VOverlay interface C++ class**
 
-**v1.1.0**
+**v1.1.1**
 
-------
+
+
+# Table of contents
+
+- [Overview](#overview)
+- [Versions](#versions)
+- [Library files](#library-files)
+- [VOverlay class description](#voverlay-class-description)
+  - [Class declaration](#class-declaration)
+  - [getVersion method](#getversion-method)
+  - [overlay method](#overlay-method)
+- [Build and connect to your project](#build-and-connect-to-your-project)
 
 
 
 # Overview
 
-**VOverlay** C++ library provides standard interface for overlaying information on video for different implementations. Standard for overlaying information on video used in video processing pipeline interface. Video processing pipeline interface understands only interfaces and user can make custom video overlay class implementation depends on situation. The **VOverlay** interface provides only one method **overlay(...)** to overlay information on video. This method is called by pipelines for each frame of the video. Any implementation may include additional methods depending on the situation. The method depends on the [**Frame**](https://github.com/ConstantRobotics-Ltd/Frame) class, which defines the data structure of the video frame.
+**VOverlay** C++ library provides standard interface for overlaying information on video for different implementations. Standard for overlaying information on video used in video processing pipeline interface. Video processing pipeline interface understands only interfaces and user can make custom video overlay class implementation depends on situation. The **VOverlay** interface provides only one method **overlay(...)** to overlay information on video. This method is called by pipelines for each frame of the video. Any implementation may include additional methods depending on the situation. The method depends on the [Frame](https://github.com/ConstantRobotics-Ltd/Frame) class, which defines the data structure of the video frame. It uses C++17 standard. The library is licensed under the **Apache 2.0** license.
 
 
 
@@ -18,10 +31,30 @@
 
 **Table 1** - Library versions.
 
-| Version | Release date | What's new     |
-| ------- | ------------ | -------------- |
-| 1.0.0   | 31.08.2023   | First version. |
-| 1.1.0   | 13.12.2023   | Virtual destructor added.<br /> Frame class updated. |
+| Version | Release date | What's new                                              |
+| ------- | ------------ | ------------------------------------------------------- |
+| 1.0.0   | 31.08.2023   | First version.                                          |
+| 1.1.0   | 13.12.2023   | - Virtual destructor added.<br />- Frame class updated. |
+| 1.1.1   | 20.03.2024   | - Documentation updated.<br />- Frame class updated.    |
+
+
+
+# Library files
+
+The library supplied by source code only. The user would be given a set of files in the form of a CMake project (repository). The repository structure is shown below:
+
+```xml
+CMakeLists.txt ---------------- Main CMake file of the library.
+3rdparty ---------------------- Folder with 3rdparty libraries.
+    CMakeLists.txt ------------ CMake file to include 3rdparty libraries.
+    Frame --------------------- Folder with Frame library files.
+src --------------------------- Folder with library source code.
+    CMakeLists.txt ------------ CMake file.
+    VCodec.h ------------------ Main library header file.
+    VCodecVersion.h ----------- Header file with library version.
+    VCodecVersion.h.in -------- File for CMake to generate version header.
+    VCodec.cpp ---------------- C++ implementation file.
+```
 
 
 
@@ -29,7 +62,7 @@
 
 
 
-## VOverlay class declaration
+## Class declaration
 
 **VOverlay.h** file contains **VOverlay** class declaration. Class declaration:
 
@@ -37,21 +70,14 @@
 class VOverlay
 {
 public:
-    /**
-     * @brief Class destructor.
-     */
+    
+    /// Class destructor.
     virtual ~VOverlay();
-    /**
-     * @brief Get string of current class version.
-     * @return String of current class version "Major.Minor.Patch"
-     */
+    
+    /// Get string of current class version.
     static std::string getVersion();
-    /**
-     * @brief Overlay the information on the video.
-     * @param frame Frame to put information.
-     * @param data Pointer to custom data. Depends on implementation.
-     * @return TRUE if everything OK or FALSE in case any errors.
-     */
+    
+    /// Overlay the information on the video.
     virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
 };
 ```
@@ -60,7 +86,7 @@ public:
 
 ## getVersion method
 
-**getVersion()** method return string of current version of **VOverlay** class. Method declaration:
+The **getVersion()** method return string of current version of **VOverlay** class. Method declaration:
 
 ```cpp
 static std::string getVersion();
@@ -75,14 +101,14 @@ cout << "VOverlay class version: " << VOverlay::getVersion() << endl;
 Console output:
 
 ```bash
-VOverlay class version: 1.1.0
+VOverlay class version: 1.1.1
 ```
 
 
 
 ## overlay method
 
-**overlay(...)** method overlays custom information on video. Method declaration:
+The **overlay(...)** method overlays custom information on video. Method declaration:
 
 ```cpp
 virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
@@ -90,10 +116,10 @@ virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
 
 | Parameter | Description                                                  |
 | --------- | ------------------------------------------------------------ |
-| frame     | Video frame object to overlay information. Each video overlay implementation should support all RAW pixel format declared in [**Frame**](https://github.com/ConstantRobotics-Ltd/Frame) class (RGB24, BGR24, YUYV, UYVY, GRAY, YUV24, NV12, NV21, YU12, YV12). |
+| frame     | Video frame object to overlay information. Each video overlay implementation should support all RAW pixel format declared in [Frame](https://github.com/ConstantRobotics-Ltd/Frame) class (RGB24, BGR24, YUYV, UYVY, GRAY, YUV24, NV12, NV21, YU12, YV12). |
 | data      | Pointer to information structure to overlay. User defines data structure format depends on implementation. |
 
-**Returns:** TRUE if information overlayed or FALSE if not (not supported frame format, invalid frame data etc.).
+**Returns:** TRUE if information is overlayed or FALSE if not (not supported frame format, invalid frame data etc.).
 
 
 
