@@ -4,7 +4,7 @@
 
 # **VOverlay interface C++ class**
 
-**v1.1.2**
+**v1.1.3**
 
 
 
@@ -23,7 +23,7 @@
 
 # Overview
 
-**VOverlay** C++ library provides standard interface for overlaying information on video for different implementations. Standard for overlaying information on video used in video processing pipeline interface. Video processing pipeline interface understands only interfaces and user can make custom video overlay class implementation depends on situation. The **VOverlay** interface provides only one method **overlay(...)** to overlay information on video. This method is called by pipelines for each frame of the video. Any implementation may include additional methods depending on the situation. The method depends on the [Frame](https://rapidpixel.constantrobotics.com/docs/service-libraries/frame.html) class, which defines the data structure of the video frame (source code included, Apache 2.0 license). It uses C++17 standard. The library is licensed under the **Apache 2.0** license.
+**VOverlay** C++ library provides standard interface for overlaying information on video for different implementations. Hte library does bothing, just provides interface. Standard for overlaying information on video used in video streamer interface. Video streamer interface understands only interfaces and user can make custom video overlay class implementation depends on situation. The **VOverlay** interface provides only one method **overlay(...)** to overlay information on video. This method is called by video streamer for each frame of the video. Any implementation may include additional methods depending on the situation. The library depends on the [Frame](https://rapidpixel.constantrobotics.com/docs/service-libraries/frame.html) class, which defines the data structure of the video frame (source code included, Apache 2.0 license). It uses C++17 standard. The library is licensed under the **Apache 2.0** license.
 
 
 
@@ -37,6 +37,7 @@
 | 1.1.0   | 13.12.2023   | - Virtual destructor added.<br />- Frame class updated. |
 | 1.1.1   | 20.03.2024   | - Documentation updated.<br />- Frame class updated.    |
 | 1.1.2   | 17.05.2024   | - Documentation updated.                                |
+| 1.1.3   | 10.07.2024   | - CMake updated.<br />- Frame class updated.            |
 
 
 
@@ -68,19 +69,26 @@ src ----------------------- Folder with library source code.
 **VOverlay.h** file contains **VOverlay** class declaration. Class declaration:
 
 ```cpp
+namespace cr
+{
+namespace video
+{
+/// Video overlay interface class.
 class VOverlay
 {
 public:
-    
+
     /// Class destructor.
     virtual ~VOverlay();
-    
+
     /// Get string of current class version.
     static std::string getVersion();
-    
+
     /// Overlay the information on the video.
     virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
 };
+}
+}
 ```
 
 
@@ -102,7 +110,7 @@ cout << "VOverlay class version: " << VOverlay::getVersion() << endl;
 Console output:
 
 ```bash
-VOverlay class version: 1.1.2
+VOverlay class version: 1.1.3
 ```
 
 
@@ -117,8 +125,8 @@ virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
 
 | Parameter | Description                                                  |
 | --------- | ------------------------------------------------------------ |
-| frame     | Video frame object to overlay information. Each video overlay implementation should support all RAW pixel format declared in [Frame](https://rapidpixel.constantrobotics.com/docs/service-libraries/frame.html) class (RGB24, BGR24, YUYV, UYVY, GRAY, YUV24, NV12, NV21, YU12, YV12). |
-| data      | Pointer to information structure to overlay. User defines data structure format depends on implementation. |
+| frame     | Video [Frame](https://rapidpixel.constantrobotics.com/docs/service-libraries/frame.html) class object to overlay information. Each video overlay implementation should support all RAW pixel format declared in [Frame](https://rapidpixel.constantrobotics.com/docs/service-libraries/frame.html) class (RGB24, BGR24, YUYV, UYVY, GRAY, YUV24, NV12, NV21, YU12, YV12). |
+| data      | Pointer to information structure to overlay. User may define data structure format depends on implementation. |
 
 **Returns:** TRUE if information is overlayed or FALSE if not (not supported frame format, invalid frame data etc.).
 
@@ -156,7 +164,7 @@ git submodule add https://github.com/ConstantRobotics-Ltd/VOverlay.git 3rdparty/
 git submodule update --init --recursive
 ```
 
-In your repository folder **3rdparty/VOverlay** will be created which contains files of **VOverlay** repository with subrepository **Frame**. New structure of your repository:
+In your repository folder **3rdparty/VOverlay** will be created which contains files of **VOverlay** repository with subrepository **Frame**. Also you can copy **VOverlay** repository to **3rdparty** of your repository. New structure of your repository:
 
 ```bash
 CMakeLists.txt
