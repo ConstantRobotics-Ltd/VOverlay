@@ -125,7 +125,7 @@ virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
 
 | Parameter | Description                                                  |
 | --------- | ------------------------------------------------------------ |
-| frame     | Video [Frame](https://rapidpixel.constantrobotics.com/docs/service-libraries/frame.html) class object to overlay information. Each video overlay implementation should support all RAW pixel format declared in [Frame](https://rapidpixel.constantrobotics.com/docs/service-libraries/frame.html) class (RGB24, BGR24, YUYV, UYVY, GRAY, YUV24, NV12, NV21, YU12, YV12). |
+| frame     | Video [Frame](https://rapidpixel.constantrobotics.com/docs/Service/Frame.html) class object to overlay information. Each video overlay implementation should support all RAW pixel format declared in [Frame](https://rapidpixel.constantrobotics.com/docs/Service/Frame.html) class (RGB24, BGR24, YUYV, UYVY, GRAY, YUV24, NV12, NV21, YU12, YV12). |
 | data      | Pointer to information structure to overlay. User may define data structure format depends on implementation. |
 
 **Returns:** TRUE if information is overlayed or FALSE if not (not supported frame format, invalid frame data etc.).
