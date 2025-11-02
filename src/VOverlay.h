@@ -1,5 +1,6 @@
 #pragma once
 #include "Frame.h"
+#include <string>
 
 
 
@@ -20,16 +21,16 @@ public:
     virtual ~VOverlay();
 
     /**
-     * @brief Get string of current class version.
-     * @return String of current class version "Major.Minor.Patch"
+     * @brief Get string of the current class version.
+     * @return String of the current class version "Major.Minor.Patch"
      */
     static std::string getVersion();
 
     /**
-     * @brief Overlay the information on the video.
-     * @param frame Frame to put information.
+     * @brief Overlay information on the video.
+     * @param frame Frame on which to put information.
      * @param data Pointer to custom data. Depends on implementation.
-     * @return TRUE if everything OK or FALSE in case any errors.
+     * @return TRUE if everything is OK or FALSE in case of any errors.
      */
     virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
 };

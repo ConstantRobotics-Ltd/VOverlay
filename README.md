@@ -4,7 +4,7 @@
 
 # **VOverlay interface C++ class**
 
-**v1.1.3**
+**v1.1.4**
 
 
 
@@ -23,7 +23,7 @@
 
 # Overview
 
-**VOverlay** C++ library provides standard interface for overlaying information on video for different implementations. Hte library does bothing, just provides interface. Standard for overlaying information on video used in video streamer interface. Video streamer interface understands only interfaces and user can make custom video overlay class implementation depends on situation. The **VOverlay** interface provides only one method **overlay(...)** to overlay information on video. This method is called by video streamer for each frame of the video. Any implementation may include additional methods depending on the situation. The library depends on the [Frame](https://rapidpixel.constantrobotics.com/docs/Service/Frame.html) class, which defines the data structure of the video frame (source code included, Apache 2.0 license). It uses C++17 standard. The library is licensed under the **Apache 2.0** license.
+The **VOverlay** C++ library provides a standard interface for overlaying information on video frames across different implementations. The library itself does nothing; it just provides an interface. This standard for overlaying information on video is used in video streamer interfaces. Video streamer interfaces work exclusively with standardized interfaces, allowing users to create custom video overlay class implementations depending on their specific requirements. The **VOverlay** interface provides only one method, **overlay(...)**, to overlay information on video frames. This method is called by the video streamer for each frame of the video. Any implementation may include additional methods depending on the situation. The library depends on the [Frame](https://rapidpixel.constantrobotics.com/docs/Service/Frame.html) class, which defines the data structure of the video frame (source code included, Apache 2.0 license). It uses the C++17 standard. The library is licensed under the **Apache 2.0** license.
 
 
 
@@ -38,12 +38,13 @@
 | 1.1.1   | 20.03.2024   | - Documentation updated.<br />- Frame class updated.    |
 | 1.1.2   | 17.05.2024   | - Documentation updated.                                |
 | 1.1.3   | 10.07.2024   | - CMake updated.<br />- Frame class updated.            |
+| 1.1.4   | 02.11.2024   | - Fix code mistakes.<br />- Fix documentation mistakes.  |
 
 
 
 # Library files
 
-The library supplied by source code only. The user would be given a set of files in the form of a CMake project (repository). The repository structure is shown below:
+The library is supplied as source code only. The user is provided with a set of files in the form of a CMake project (repository). The repository structure is shown below:
 
 ```xml
 CMakeLists.txt ------------ Main CMake file of the library.
@@ -66,7 +67,7 @@ src ----------------------- Folder with library source code.
 
 ## Class declaration
 
-**VOverlay.h** file contains **VOverlay** class declaration. Class declaration:
+The **VOverlay.h** file contains the **VOverlay** class declaration. Class declaration:
 
 ```cpp
 namespace cr
@@ -81,10 +82,10 @@ public:
     /// Class destructor.
     virtual ~VOverlay();
 
-    /// Get string of current class version.
+    /// Get string of the current class version.
     static std::string getVersion();
 
-    /// Overlay the information on the video.
+    /// Overlay information on the video.
     virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
 };
 }
@@ -95,13 +96,13 @@ public:
 
 ## getVersion method
 
-The **getVersion()** method return string of current version of **VOverlay** class. Method declaration:
+The **getVersion()** method returns a string of the current version of the **VOverlay** class. Method declaration:
 
 ```cpp
 static std::string getVersion();
 ```
 
-Method can be used without **VOverlay** class instance. Example:
+This method can be used without a **VOverlay** class instance. Example:
 
 ```cpp
 cout << "VOverlay class version: " << VOverlay::getVersion() << endl;
@@ -110,14 +111,14 @@ cout << "VOverlay class version: " << VOverlay::getVersion() << endl;
 Console output:
 
 ```bash
-VOverlay class version: 1.1.3
+VOverlay class version: 1.1.4
 ```
 
 
 
 ## overlay method
 
-The **overlay(...)** method overlays custom information on video. Method declaration:
+The **overlay(...)** method overlays custom information on video frames. Method declaration:
 
 ```cpp
 virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
@@ -125,10 +126,10 @@ virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
 
 | Parameter | Description                                                  |
 | --------- | ------------------------------------------------------------ |
-| frame     | Video [Frame](https://rapidpixel.constantrobotics.com/docs/Service/Frame.html) class object to overlay information. Each video overlay implementation should support all RAW pixel format declared in [Frame](https://rapidpixel.constantrobotics.com/docs/Service/Frame.html) class (RGB24, BGR24, YUYV, UYVY, GRAY, YUV24, NV12, NV21, YU12, YV12). |
-| data      | Pointer to information structure to overlay. User may define data structure format depends on implementation. |
+| frame     | Video [Frame](https://rapidpixel.constantrobotics.com/docs/Service/Frame.html) class object on which to overlay information. Each video overlay implementation should support all RAW pixel formats declared in the [Frame](https://rapidpixel.constantrobotics.com/docs/Service/Frame.html) class (RGB24, BGR24, YUYV, UYVY, GRAY, YUV24, NV12, NV21, YU12, YV12). |
+| data      | Pointer to information structure to overlay. The user may define the data structure format depending on the implementation. |
 
-**Returns:** TRUE if information is overlayed or FALSE if not (not supported frame format, invalid frame data etc.).
+**Returns:** TRUE if information is overlaid or FALSE if not (unsupported frame format, invalid frame data, etc.).
 
 
 
@@ -156,7 +157,7 @@ src
     yourLib.cpp
 ```
 
-You can add repository **VOverlay** as submodule by commands:
+You can add the **VOverlay** repository as a submodule with the following commands:
 
 ```bash
 cd <your respository folder>
@@ -164,7 +165,7 @@ git submodule add https://github.com/ConstantRobotics-Ltd/VOverlay.git 3rdparty/
 git submodule update --init --recursive
 ```
 
-In your repository folder **3rdparty/VOverlay** will be created which contains files of **VOverlay** repository with subrepository **Frame**. Also you can copy **VOverlay** repository to **3rdparty** of your repository. New structure of your repository:
+In your repository folder, **3rdparty/VOverlay** will be created, which contains files of the **VOverlay** repository with the **Frame** subrepository. Alternatively, you can copy the **VOverlay** repository to the **3rdparty** folder of your repository. The new structure of your repository:
 
 ```bash
 CMakeLists.txt
@@ -176,7 +177,7 @@ src
     VOverlay
 ```
 
-Create CMakeLists.txt file in **3rdparty** folder. CMakeLists.txt should contain:
+Create a CMakeLists.txt file in the **3rdparty** folder. The CMakeLists.txt file should contain:
 
 ```cmake
 cmake_minimum_required(VERSION 3.13)
@@ -197,21 +198,13 @@ SET(PARENT ${PARENT}_YOUR_PROJECT_3RDPARTY)
 SET(${PARENT}_SUBMODULE_CACHE_OVERWRITE OFF CACHE BOOL "" FORCE)
 
 ################################################################################
-## CONFIGURATION
-## 3rd-party submodules configuration
-################################################################################
-SET(${PARENT}_SUBMODULE_VOVERLAY                        ON  CACHE BOOL "" FORCE)
-
-################################################################################
 ## INCLUDING SUBDIRECTORIES
 ## Adding subdirectories according to the 3rd-party configuration
 ################################################################################
-if (${PARENT}_SUBMODULE_VOVERLAY)
-    add_subdirectory(VOverlay)
-endif()
+add_subdirectory(VOverlay)
 ```
 
-File **3rdparty/CMakeLists.txt** adds folder **VOverlay** to your project. Your repository new structure will be:
+The **3rdparty/CMakeLists.txt** file adds the **VOverlay** folder to your project. Your repository's new structure will be:
 
 ```bash
 CMakeLists.txt
@@ -224,13 +217,13 @@ src
     VOverlay
 ```
 
-Next you need include folder 3rdparty in main **CMakeLists.txt** file of your repository. Add string at the end of your main **CMakeLists.txt**:
+Next, you need to include the 3rdparty folder in the main **CMakeLists.txt** file of your repository. Add the following line at the end of your main **CMakeLists.txt**:
 
 ```cmake
 add_subdirectory(3rdparty)
 ```
 
-Next you have to include **VOverlay** library in your **src/CMakeLists.txt** file:
+Next, you need to include the **VOverlay** library in your **src/CMakeLists.txt** file:
 
 ```cmake
 target_link_libraries(${PROJECT_NAME} VOverlay)
