@@ -1,5 +1,6 @@
 #include "VOverlay.h"
 #include "VOverlayVersion.h"
+#include <string>
 
 
 
