@@ -73,9 +73,7 @@ static -------------------- Folder with images used in this document.
 The **VOverlay.h** file contains the **VOverlay** class declaration. Class declaration:
 
 ```cpp
-namespace cr
-{
-namespace video
+namespace rapidpixel
 {
 /// Video overlay interface class.
 class VOverlay
@@ -89,7 +87,7 @@ public:
     static std::string getVersion();
 
     /// Overlay information on the video.
-    virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
+    virtual bool overlay(rapidpixel::Frame& frame, void* data = nullptr) = 0;
 
 protected:
 
@@ -109,7 +107,6 @@ protected:
     VOverlay& operator= (VOverlay&& src) = default;
 };
 }
-}
 ```
 
 
@@ -127,7 +124,7 @@ static std::string getVersion();
 This method can be used without a **VOverlay** class instance. The method is thread-safe. Example:
 
 ```cpp
-std::cout << "VOverlay class version: " << cr::video::VOverlay::getVersion() << std::endl;
+std::cout << "VOverlay class version: " << rapidpixel::VOverlay::getVersion() << std::endl;
 ```
 
 Console output:
@@ -143,7 +140,7 @@ VOverlay class version: 1.1.5
 The **overlay(...)** method overlays custom information on video frames. Method declaration:
 
 ```cpp
-virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
+virtual bool overlay(rapidpixel::Frame& frame, void* data = nullptr) = 0;
 ```
 
 | Parameter | Description                                                  |

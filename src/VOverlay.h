@@ -4,9 +4,7 @@
 
 
 
-namespace cr
-{
-namespace video
+namespace rapidpixel
 {
 /**
  * @brief Video overlay interface class.
@@ -48,7 +46,7 @@ public:
      * @return TRUE if everything is OK or FALSE in case of any errors
      * (unsupported frame format, invalid frame data, invalid custom data).
      */
-    virtual bool overlay(cr::video::Frame& frame, void* data = nullptr) = 0;
+    virtual bool overlay(rapidpixel::Frame& frame, void* data = nullptr) = 0;
 
 protected:
 
@@ -83,5 +81,16 @@ protected:
      */
     VOverlay& operator= (VOverlay&& src) = default;
 };
+}
+
+
+
+// Compatibility: the names of namespace rapidpixel are also available in
+// namespace cr::video.
+namespace cr
+{
+namespace video
+{
+using namespace ::rapidpixel;
 }
 }

@@ -4,14 +4,14 @@
 
 
 
-cr::video::VOverlay::~VOverlay()
+rapidpixel::VOverlay::~VOverlay()
 {
 
 }
 
 
 
-std::string cr::video::VOverlay::getVersion()
+std::string rapidpixel::VOverlay::getVersion()
 {
     return VOVERLAY_VERSION;
 }
