@@ -29,6 +29,8 @@
 
 The **VOverlay** C++ library provides a standard interface for overlaying information on video frames across different implementations. The library itself does nothing; it just provides an interface. This standard for overlaying information on video is used in video streamer interfaces. Video streamer interfaces work exclusively with standardized interfaces, allowing users to create custom video overlay class implementations depending on their specific requirements. The **VOverlay** interface provides only one method, **overlay(...)**, to overlay information on video frames. This method is called by the video streamer for each frame of the video. Any implementation may include additional methods depending on the situation. The library depends on the [Frame](https://rapidpixel.constantrobotics.com/docs/Service/Frame.html) class, which defines the data structure of the video frame. The repository does not contain the source code of the **Frame** library (see [Build and connect to your project](#build-and-connect-to-your-project)). It uses the C++17 standard.
 
+**VOverlay** is general-purpose software: it is not tied to any sector or application, and the developer of a program decides what the program does with it.
+
 
 
 # Versions
