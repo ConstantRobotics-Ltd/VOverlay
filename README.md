@@ -162,7 +162,7 @@ The interface does not check the frame and the custom data: they are passed to t
 
 ## Build stand alone
 
-The repository does not contain sub-repositories. The **Frame** library the **VOverlay** library depends on must be cloned into the same folder as **VOverlay**. The folder structure must be:
+The repository does not contain sub-repositories. The library **Frame** that **VOverlay** depends on must be placed in the same folder as **VOverlay**: copy its folder, for example from the folder **modules** of the RapidPixel SDK. The folder structure must be:
 
 ```bash
 <work folder>
@@ -170,11 +170,9 @@ The repository does not contain sub-repositories. The **Frame** library the **VO
     Frame
 ```
 
-Typical commands to build the **VOverlay** library (use the URLs of the repositories provided to you):
+Typical commands to build the **VOverlay** library:
 
 ```bash
-git clone <VOverlay repository URL>
-git clone <Frame repository URL>
 cd VOverlay
 mkdir build
 cd build
@@ -212,16 +210,7 @@ src
     yourLib.cpp
 ```
 
-You can add the **VOverlay** and **Frame** repositories as submodules with the following commands (use the URLs of the repositories provided to you):
-
-```bash
-cd <your repository folder>
-git submodule add <Frame repository URL> 3rdparty/Frame
-git submodule add <VOverlay repository URL> 3rdparty/VOverlay
-git submodule update --init --recursive
-```
-
-In your repository folder, **3rdparty/Frame** and **3rdparty/VOverlay** will be created. Alternatively, you can copy the **Frame** and **VOverlay** repositories to the **3rdparty** folder of your repository. The structure of your repository:
+Create folder **3rdparty** in your repository and copy the folders of the libraries **Frame** and **VOverlay** there (for example from the folder **modules** of the RapidPixel SDK). The structure of your repository:
 
 ```bash
 CMakeLists.txt
